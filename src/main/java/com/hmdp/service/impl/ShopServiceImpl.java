@@ -84,6 +84,9 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IS
         // 3. 写入redis
         // 没有给该记录添加ttl，可以认为是永久有效。具体过期处理在代码逻辑上进行处理
         stringRedisTemplate.opsForValue().set(CACHE_SHOP_KEY + id, JSONUtil.toJsonStr(redisData));
+
+        int[] a = new int[12];
+        System.out.println(a.getClass().toString());
     }
 
 
