@@ -15,6 +15,7 @@ import java.util.UUID;
 @Slf4j
 @RestController
 @RequestMapping("upload")
+@CrossOrigin
 public class UploadController {
 
     @PostMapping("blog")

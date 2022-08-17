@@ -18,6 +18,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/voucher")
+@CrossOrigin
 public class VoucherController {
 
     @Resource

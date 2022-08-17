@@ -21,6 +21,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/shop")
+@CrossOrigin
 public class ShopController {
 
     @Resource

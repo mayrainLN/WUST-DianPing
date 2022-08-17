@@ -10,6 +10,7 @@ spring:
     password: ln20010110
   redis:
     host: 47.106.160.24
+#    host: localhost
     port: 6379
     password: ln737701...
     lettuce:
