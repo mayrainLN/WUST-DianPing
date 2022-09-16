@@ -11,6 +11,7 @@ import com.hmdp.dto.UserDTO;
 import com.hmdp.entity.User;
 import com.hmdp.mapper.UserMapper;
 import com.hmdp.service.IUserService;
+import com.hmdp.utils.AliCloudMS;
 import com.hmdp.utils.RegexUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +72,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 //        key->login:code:199999  val->898989
         stringRedisTemplate.opsForValue().set(LOGIN_CODE_KEY + phone, code);
 //        5.发送验证码
-        log.debug("发送短信验证码成功，验证码：{}", code);
+        try {
+//            AliCloudMS.sendMS(phone,code);
+            log.debug("发送短信验证码成功，验证码：{}", code);
+        } catch (Exception e) {
+            log.error("阿里云MS服务异常");
+            log.info("code:"+code);
+            e.printStackTrace();
+        }
         return Result.ok();
     }
 
@@ -150,7 +158,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         String tokenKey = LOGIN_USER_KEY + token;
 //        将该用户的token存入redis
         stringRedisTemplate.opsForHash().putAll(tokenKey, userMap);
-//      签发token
+//      设置token过期时间
         stringRedisTemplate.expire(tokenKey, LOGIN_USER_TTL, TimeUnit.MINUTES);
 
         return Result.ok(tokenKey);

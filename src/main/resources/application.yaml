@@ -9,16 +9,20 @@ spring:
     username: root
     password: ln20010110
   redis:
-    host: 47.106.160.24
-#    host: localhost
-    port: 6379
-    password: ln737701...
+#    host: 47.106.160.24
+    host: localhost
+#    port: 6379
+    port: 49153
+#    password: ln737701...
+    password: redispw
+    timeout: 3000
     lettuce:
       pool:
         max-active: 10
         max-idle: 10
         min-idle: 1
         time-between-eviction-runs: 10s
+
   jackson:
     default-property-inclusion: non_null # JSON处理时忽略非空字段
 mybatis-plus:

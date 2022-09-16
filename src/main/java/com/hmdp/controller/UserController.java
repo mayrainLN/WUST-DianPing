@@ -21,10 +21,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 /**
- * <p>
- * 前端控制器
- * </p>
- *
  * @author 虎哥
  * @since 2021-12-22
  */
@@ -65,13 +61,17 @@ public class UserController {
      * @return 无
      */
     @PostMapping("/logout")
-    public Result logout() {
+    public Result logout(@PathVariable("token") String token) {
         // TODO 实现登出功能
+        UserDTO  user = UserHolder.getUser();
+        log.debug("token：{}",token);
         return Result.fail("功能未完成");
     }
 
+//    @CrossOrigin
     @GetMapping("/me")
     public Result me() {
+        log.debug("me...");
         UserDTO  user = UserHolder.getUser();
         if (user != null) {
             return Result.ok(user);
